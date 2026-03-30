@@ -1,0 +1,390 @@
+/* =============================================================================
+   SkyWalk Tutorial Overlay
+   ============================================================================= */
+
+/* Full-screen backdrop */
+#tut-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 20, 40, 0.82);
+  backdrop-filter: blur(4px);
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  box-sizing: border-box;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+#tut-overlay.tut-visible { opacity: 1; }
+
+/* All children inherit box model */
+#tut-modal, #tut-modal * { box-sizing: border-box; }
+
+/* Modal card */
+#tut-modal {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 24px 64px rgba(0,0,0,0.45);
+  width: min(780px, 92vw);
+  max-height: 92vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  box-sizing: border-box;
+}
+
+/* Progress bar */
+#tut-progress-bar {
+  height: 5px;
+  background: #e8ecf0;
+}
+#tut-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #1a6dcc, #00b4d8);
+  transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 0 3px 3px 0;
+}
+
+/* Dot navigation */
+#tut-step-dots {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 7px;
+  padding: 14px 12px 0;
+}
+.tut-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #d1d9e0;
+  cursor: pointer;
+  transition: background 0.25s, transform 0.2s;
+}
+.tut-dot.active  { background: #1a6dcc; transform: scale(1.3); }
+.tut-dot.done    { background: #90c5f5; }
+.tut-dot:hover   { background: #6aaff5; transform: scale(1.2); }
+
+/* Slide area */
+#tut-slide-area {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px 32px 12px;
+  transition: opacity 0.15s ease, transform 0.15s ease;
+}
+#tut-slide-area.tut-slide-out {
+  opacity: 0;
+  transform: translateX(20px);
+}
+#tut-slide-area.tut-slide-in {
+  opacity: 0;
+  transform: translateX(-20px);
+}
+
+.tut-slide-icon {
+  font-size: 2.6rem;
+  text-align: center;
+  margin-bottom: 8px;
+}
+.tut-slide-title {
+  text-align: center;
+  font-size: 1.45rem;
+  font-weight: 700;
+  color: #0d2a4e;
+  margin: 0 0 16px;
+}
+.tut-slide-body {
+  color: #333;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+/* Footer */
+#tut-footer {
+  border-top: 1px solid #e8ecf0;
+  padding: 14px 24px;
+  background: #f7f9fc;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+/* Checkbox */
+#tut-checkbox-area { flex: 1; }
+.tut-checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.88rem;
+  color: #555;
+  cursor: pointer;
+  user-select: none;
+}
+.tut-checkbox-label input { accent-color: #1a6dcc; width: 16px; height: 16px; }
+
+/* Nav */
+#tut-nav {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+#tut-counter {
+  font-size: 0.85rem;
+  color: #888;
+  min-width: 44px;
+  text-align: center;
+}
+.tut-nav-btn {
+  padding: 9px 22px;
+  border-radius: 8px;
+  border: 2px solid #1a6dcc;
+  background: #fff;
+  color: #1a6dcc;
+  font-size: 0.92rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, opacity 0.2s;
+}
+.tut-nav-btn:hover:not(:disabled) { background: #e8f0fb; }
+.tut-nav-btn:disabled { opacity: 0.3; cursor: default; }
+.tut-nav-btn.primary {
+  background: linear-gradient(135deg, #1a6dcc, #00b4d8);
+  color: #fff;
+  border-color: transparent;
+}
+.tut-nav-btn.primary:hover { background: linear-gradient(135deg, #155cb8, #009fc0); }
+.tut-nav-btn.close-btn {
+  background: linear-gradient(135deg, #28a745, #20c997);
+  border-color: transparent;
+  color: #fff;
+}
+
+/* =============================================================================
+   Slide content helpers
+   ============================================================================= */
+
+/* Welcome slide */
+.tut-intro { font-size: 1.05rem; text-align: center; color: #1a3a5c; font-weight: 500; margin-bottom: 12px; }
+.tut-feature-list { display: flex; flex-direction: column; gap: 8px; max-width: 420px; margin: 0 auto; }
+.tut-feature-item {
+  background: #f0f6ff;
+  border-left: 4px solid #1a6dcc;
+  padding: 9px 14px;
+  border-radius: 6px;
+  font-weight: 500;
+  color: #1a3a5c;
+}
+
+/* Two-column layout */
+.tut-two-col { display: flex; gap: 24px; align-items: flex-start; }
+.tut-col-text { flex: 1; }
+.tut-col-visual { flex: 0 0 220px; }
+.tut-list { padding-left: 0; list-style: none; margin: 10px 0; }
+.tut-list li { padding: 5px 0; }
+.tut-tip { font-size: 0.87rem; background: #fffbec; border-left: 3px solid #f5c842; padding: 7px 12px; border-radius: 5px; margin-top: 10px; }
+
+/* Screen mockup (slide 2) */
+.tut-screen-layout { display: flex; flex-direction: column; gap: 14px; }
+.tut-screen-mockup {
+  border: 2px solid #cdd5e0;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #f5f7fb;
+}
+.tut-mock-header {
+  /*background: linear-gradient(90deg, #0d2a4e, #1a6dcc);*/
+  background: linear-gradient(0deg, white 0%, gray 100%);
+  padding: 8px 14px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.tut-mock-logo { color: #333; font-weight: 700; font-size: 1rem; }
+.tut-mock-btns { display: flex; gap: 6px; margin-left: auto; }
+.tut-mock-btn { padding: 4px 10px; border-radius: 5px; font-size: 0.72rem; font-weight: 600; color: #333; }
+.tut-mock-btn.blue   { background: #3a9ae8; color: #fff; }
+.tut-mock-btn.green  { background: #28a745; color: #fff; }
+.tut-mock-btn.orange { background: #fd7e14; color: #fff; }
+.tut-mock-btn.gray   { background: #d1d9e0; color: #333; }
+
+/* Consistent centered sub-text across all slides */
+.tut-sub {
+  text-align: center;
+  color: #555;
+  margin-bottom: 16px;
+  line-height: 1.6;
+}
+.tut-mock-body { display: flex; height: 90px; }
+.tut-mock-sidebar { width: 80px; background: #e8ecf0; display: flex; flex-direction: column; gap: 2px; padding: 6px 4px; }
+.tut-mock-tab { background: #d1d9e0; border-radius: 4px; font-size: 0.65rem; padding: 4px 5px; text-align: center; cursor: default; }
+.tut-mock-tab.active { background: #1a6dcc; color: #fff; }
+.tut-mock-main { flex: 1; padding: 10px 12px; }
+.tut-mock-panel { display: flex; flex-direction: column; gap: 5px; }
+.tut-mock-field { height: 12px; background: #d1d9e0; border-radius: 3px; }
+.tut-mock-field.short { width: 55%; }
+.tut-callouts { display: flex; flex-direction: column; gap: 6px; }
+.tut-callout { font-size: 0.85rem; padding: 6px 12px; background: #f0f6ff; border-radius: 6px; border-left: 3px solid #1a6dcc; }
+
+/* Mini form (slide 3) */
+.tut-mini-form { background: #f7f9fc; border: 1.5px solid #dde3ec; border-radius: 10px; padding: 14px; }
+.tut-form-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; font-size: 0.82rem; color: #555; }
+.tut-form-input { background: #fff; border: 1.5px solid #bcc8d8; border-radius: 5px; padding: 4px 10px; font-size: 0.82rem; font-weight: 600; color: #1a3a5c; }
+.tut-form-input.blue { border-color: #1a6dcc; color: #1a6dcc; }
+
+/* Weather card (slide 4) */
+.tut-weather-card { background: #f7f9fc; border: 1.5px solid #dde3ec; border-radius: 10px; overflow: hidden; font-size: 0.82rem; }
+.tut-wcard-header { padding: 7px 12px; font-weight: 700; color: #fff; font-size: 0.95rem; }
+.tut-wcard-header.green { background: linear-gradient(90deg, #28a745, #20c997); }
+.tut-wcard-row { padding: 4px 12px; border-bottom: 1px solid #e8ecf0; color: #333; }
+
+/* Route diagram (slide 5) */
+.tut-route-diagram { display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 12px; background: #f7f9fc; border-radius: 10px; border: 1.5px solid #dde3ec; }
+.tut-wp { padding: 7px 20px; border-radius: 8px; font-weight: 700; font-size: 0.9rem; color: #fff; }
+.tut-wp.green  { background: #28a745; }
+.tut-wp.yellow { background: #fd7e14; }
+.tut-wp-line { font-size: 0.78rem; color: #555; }
+
+/* W&B diagram (slide 6) */
+.tut-wb-diagram { background: #f7f9fc; border: 1.5px solid #dde3ec; border-radius: 10px; padding: 16px; }
+.tut-wb-bar { height: 22px; background: #e8ecf0; border-radius: 6px; position: relative; margin-bottom: 6px; overflow: visible; }
+.tut-wb-fill { height: 100%; border-radius: 6px; }
+.tut-wb-fill.green { background: linear-gradient(90deg, #28a745, #81c784); }
+.tut-wb-marker { position: absolute; top: -6px; transform: translateX(-50%); font-size: 1.1rem; color: #1a6dcc; }
+.tut-wb-labels { display: flex; justify-content: space-between; font-size: 0.75rem; color: #888; }
+.tut-wb-status { text-align: center; margin-top: 10px; font-weight: 700; }
+.tut-wb-status.green-text { color: #28a745; }
+
+/* Runway list (slide 7) */
+.tut-runway-diagram { display: flex; flex-direction: column; gap: 6px; }
+.tut-rwy { padding: 10px 14px; border-radius: 8px; font-weight: 600; font-size: 0.85rem; color: #fff; }
+.tut-rwy.green  { background: linear-gradient(90deg, #28a745, #81c784); }
+.tut-rwy.yellow { background: linear-gradient(90deg, #fd7e14, #ffc107); }
+.tut-rwy.red    { background: linear-gradient(90deg, #dc3545, #f77f8a); }
+
+/* Fuel table (slide 8) */
+.tut-fuel-table { background: #f7f9fc; border: 1.5px solid #dde3ec; border-radius: 10px; overflow: hidden; font-size: 0.82rem; }
+.tut-fuel-row { display: flex; padding: 5px 10px; justify-content: space-between; border-bottom: 1px solid #e8ecf0; }
+.tut-fuel-row span { flex: 1; }
+.tut-fuel-row.header { background: #0d2a4e; color: #fff; font-weight: 700; }
+.tut-fuel-row.total { background: #e8f0fb; font-weight: 700; }
+
+/* Checklist preview (slide 9) */
+.tut-checklist-preview { background: #f7f9fc; border: 1.5px solid #dde3ec; border-radius: 10px; overflow: hidden; font-size: 0.84rem; }
+.tut-cl-header { background: #0d2a4e; color: #fff; padding: 8px 12px; font-weight: 700; }
+.tut-cl-item { padding: 6px 12px; border-bottom: 1px solid #e8ecf0; }
+.tut-cl-item.checked { color: #28a745; }
+.tut-cl-item.active  { background: #fff3cd; font-weight: 600; }
+
+/* Final screen grid (slide 10) */
+.tut-final-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 10px 0; }
+.tut-final-item {
+  background: linear-gradient(135deg, #f0f6ff, #e8f0fb);
+  border: 1.5px solid #c0d3ed;
+  border-radius: 10px;
+  padding: 14px 10px;
+  text-align: center;
+  font-size: 0.85rem;
+  color: #1a3a5c;
+  line-height: 1.5;
+}
+.tut-final-item b { display: block; font-size: 0.9rem; margin-top: 4px; }
+
+/* =============================================================================
+   Responsive — tablet (≤ 700 px)
+   ============================================================================= */
+@media (max-width: 700px) {
+  #tut-modal {
+    width: 100vw;
+    max-height: 100dvh;   /* dynamic viewport height — avoids browser-chrome overlap */
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  #tut-overlay {
+    align-items: flex-end; /* slide up from bottom on small screens */
+    padding: 0;
+  }
+  #tut-step-dots { padding: 10px 8px 0; gap: 5px; }
+  .tut-dot { width: 8px; height: 8px; }
+
+  #tut-slide-area { padding: 14px 16px 8px; }
+
+  .tut-slide-icon { font-size: 2rem; margin-bottom: 6px; }
+  .tut-slide-title { font-size: 1.15rem; margin-bottom: 10px; }
+  .tut-slide-body { font-size: 0.88rem; }
+
+  /* Stack two-column layouts */
+  .tut-two-col { flex-direction: column; gap: 14px; }
+  .tut-col-visual { flex: unset; width: 100%; }
+
+  /* Welcome feature list */
+  .tut-feature-list { max-width: 100%; }
+  .tut-feature-item { font-size: 0.85rem; padding: 7px 12px; }
+
+  /* Screen mockup — scale down */
+  .tut-mock-body { height: 72px; }
+  .tut-mock-sidebar { width: 64px; }
+  .tut-mock-tab { font-size: 0.58rem; }
+
+  /* Final grid — 2 columns */
+  .tut-final-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+  .tut-final-item { padding: 10px 6px; font-size: 0.78rem; }
+
+  /* Footer stacks vertically */
+  #tut-footer {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+    padding: 12px 16px;
+  }
+  #tut-checkbox-area { text-align: center; }
+  #tut-nav { justify-content: space-between; width: 100%; }
+
+  .tut-nav-btn { padding: 10px 18px; font-size: 0.88rem; flex: 1; text-align: center; }
+  #tut-counter { min-width: 36px; font-size: 0.8rem; }
+
+  /* Tip boxes */
+  .tut-tip { font-size: 0.82rem; }
+
+  /* Fuel table — tighter */
+  .tut-fuel-row { font-size: 0.76rem; padding: 4px 8px; }
+}
+
+/* =============================================================================
+   Responsive — small phone (≤ 400 px)
+   ============================================================================= */
+@media (max-width: 400px) {
+  .tut-slide-title { font-size: 1rem; }
+  .tut-slide-body  { font-size: 0.82rem; }
+
+  .tut-final-grid { grid-template-columns: repeat(2, 1fr); gap: 6px; }
+  .tut-final-item { font-size: 0.72rem; padding: 8px 4px; }
+
+  .tut-nav-btn { padding: 9px 10px; font-size: 0.82rem; }
+
+  /* Hide visual column on very small screens to save space */
+  .tut-col-visual { display: none; }
+
+  /* Checklist: shrink */
+  .tut-cl-item { font-size: 0.78rem; padding: 5px 10px; }
+}
+
+/* =============================================================================
+   Landscape phone — keep height manageable
+   ============================================================================= */
+@media (max-height: 500px) and (orientation: landscape) {
+  #tut-modal { max-height: 100dvh; border-radius: 0; }
+  #tut-overlay { align-items: center; }
+  #tut-step-dots { padding: 6px 0 0; }
+  .tut-dot { width: 7px; height: 7px; }
+  .tut-slide-icon { font-size: 1.4rem; margin-bottom: 2px; }
+  .tut-slide-title { font-size: 1rem; margin-bottom: 6px; }
+  #tut-slide-area { padding: 8px 20px 4px; }
+  #tut-footer { padding: 8px 16px; }
+  .tut-col-visual { display: none; }   /* hide visuals in landscape to preserve scroll room */
+}
