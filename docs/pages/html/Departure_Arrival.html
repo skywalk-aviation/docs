@@ -1,0 +1,465 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>METAR &mdash; SkyWalk SkyWalk documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=e0179649" />
+      <link rel="stylesheet" type="text/css" href="_static/css/style_tutorial.css?v=452a813f" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=5cfb6ba3"></script>
+      <script src="_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Navigation" href="Enroute.html" />
+    <link rel="prev" title="New Flight Plan" href="new_and_load.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            SkyWalk
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+    
+              <p class="caption" role="heading"><span class="caption-text">Quick start</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="general.html">Introduction to Flight Preparation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="general.html#expander-sections">Expander Sections</a></li>
+<li class="toctree-l1"><a class="reference internal" href="subscription.html">Subscription</a></li>
+<li class="toctree-l1"><a class="reference internal" href="subscription.html#sign-in-screen">Sign in Screen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="subscription.html#disclaimer">Disclaimer</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">New/ Load</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="new_and_load.html">New Flight Plan</a></li>
+<li class="toctree-l1"><a class="reference internal" href="new_and_load.html#load-delete-flight-plan">Load/ Delete Flight Plan</a></li>
+<li class="toctree-l1"><a class="reference internal" href="new_and_load.html#flashcards">Flashcards</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Departure/Arrival</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">METAR</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#variable-vrb-winds">Variable (VRB) winds</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="#aerodrome">AERODROME</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#contact">CONTACT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#fic">FIC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#wind-envelope">WIND ENVELOPE</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#example-calculations">Example Calculations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#wind-envelope-plot">Wind Envelope plot</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="#weight-and-balance">WEIGHT AND BALANCE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#runway">RUNWAY</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#required-data">Required Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#takeoff-landing-computations">Takeoff/ Landing Computations</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Enroute</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Enroute.html">Navigation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Enroute.html#metar-information">METAR Information</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Enroute.html#airspace-layers">Airspace Layers</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">ATC</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="ATC.html">ATC Transcripts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ATC.html#transcript-examples">Transcript Examples</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Checklist</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Checklist.html">Smart Checklists</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Checklist.html#create-new-checklist">Create New Checklist</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Checklist.html#load-checklist">Load Checklist</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Aircraft Settings</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="aircraft_settings.html">Aircraft Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="aircraft_settings.html#import-registered-aircraft">Import Registered Aircraft</a></li>
+<li class="toctree-l1"><a class="reference internal" href="aircraft_settings.html#personal-specifications">Personal Specifications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="aircraft_settings.html#aircraft-specifications">Aircraft Specifications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="aircraft_settings.html#weight-and-balance-envelope">Weight and Balance Envelope</a></li>
+<li class="toctree-l1"><a class="reference internal" href="aircraft_settings.html#takeoff-landing-performance-1">Takeoff/ Landing Performance (1)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="aircraft_settings.html#takeoff-landing-performance-2">Takeoff/ Landing Performance (2)</a></li>
+</ul>
+
+    <a href= "genindex.html">Index</a>
+  
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">SkyWalk</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">METAR</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/Departure_Arrival.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Information should be carefully checked on its correctness and manually changed when needed.</p>
+</div>
+<p>The tabs <strong>Departure</strong>, and <strong>Arrival</strong> have similar tabs but the information will differ based on the aerodrome information, weather conditions and user specified information.
+There various expanders that group information of a catagory.</p>
+<table class="docutils align-center">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="_images/aerodrome_dep_arr.png"><img alt="figT31" height="988" src="_images/aerodrome_dep_arr.png" width="524" /></a></p></td>
+</tr>
+</tbody>
+</table>
+<p>The main top figure shows the photo of the departure/arrival aerodrome.
+The real-time METAR weather conditions can be animated with the buttons: ⏸️ ▶️.</p>
+<table class="docutils align-center">
+<tbody>
+<tr class="row-odd"><td><p><img alt="figT32a" src="_images/departure_mainfig_clear.png" /></p></td>
+<td><p><img alt="figT32b" src="_images/departure_mainfig_animated.png" /></p></td>
+</tr>
+</tbody>
+</table>
+<p>The top ones are automatically filled with either static, or real-time information. All information is combined into visual plots and graphs that are shown in the last expanders.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>User defined changes for the aerodromes are stored in your personal environment and loaded the next time for this aerodrome.</p>
+</div>
+<section id="metar">
+<h1>METAR<a class="headerlink" href="#metar" title="Link to this heading"></a></h1>
+<p>METAR (Meteorological Aerodrome Report) is a standardized format for reporting current weather observations.
+It is used in aviation to provide critical information about the weather conditions at airports and in the vicinity.</p>
+<p>In SkyWalk, the data is derived from <strong>National Oceanic and Atmospheric Administration (NOAA)</strong> which provides information for thousands of weather stations.
+Some weather station return information every 30 minutes while others on a daily basis, and some do not return any information. Reasoning is malfunctioning or any other kind.
+In SkyWalk, every minute is checked whether data can be refreshed.</p>
+<p>Real-time weather information helps pilots to make informed decisions about takeoff, landing, and in-flight operations.
+<strong>In SkyWalk, METAR information is processed with focus on:</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li><ol class="arabic simple">
+<li><p>Safety</p></li>
+</ol>
+</li>
+<li><ol class="arabic simple" start="2">
+<li><p>Flight Planning</p></li>
+</ol>
+</li>
+<li><ol class="arabic simple" start="3">
+<li><p>Operational Efficiency</p></li>
+</ol>
+</li>
+</ul>
+</div></blockquote>
+<p><strong>The following information from the METAR stations is processed in various parts of SkyWalk:</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Wind Direction</p></li>
+<li><p>Wind Strength</p></li>
+<li><p>Wind Variation</p></li>
+<li><p>Wind Gust</p></li>
+<li><p>Temperature</p></li>
+<li><p>Dewpoint</p></li>
+<li><p>Visibility</p></li>
+<li><p>Weather: rain/snow/etc information</p></li>
+</ul>
+</div></blockquote>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>METAR stations are removed that did not return any information in the last 4 hours. However, stations can be checked on activity and included again by a simple press on the button in the <code class="docutils literal notranslate"><span class="pre">Settings</span> <span class="pre">tab</span></code>.</p>
+</div>
+<table class="docutils align-center" id="id1">
+<caption><span class="caption-text">The closest METAR stations is used for Aerodrome weather information.</span><a class="headerlink" href="#id1" title="Link to this table"></a></caption>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="_images/metar_tab.png"><img alt="figT35" height="418" src="_images/metar_tab.png" width="583" /></a></p></td>
+</tr>
+</tbody>
+</table>
+<section id="variable-vrb-winds">
+<h2>Variable (VRB) winds<a class="headerlink" href="#variable-vrb-winds" title="Link to this heading"></a></h2>
+<p>When a VRB or variable wind is returned on the METAR, such as: <code class="docutils literal notranslate"><span class="pre">VRB02KT</span></code>, it means that no wind angle can be used in the computations.
+In SkyWalk, a message will be shown that the wind is VRB. Note that when a different weather station is selected and the VRB is ignored, the wind remains VRB on the location.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Variable (VRB) does not allow to make computations. You can update this manually.</p>
+</div>
+</section>
+</section>
+<section id="aerodrome">
+<h1>AERODROME<a class="headerlink" href="#aerodrome" title="Link to this heading"></a></h1>
+<p>The <strong>Aerodrome</strong> expander presents information about the aerodrome itself.</p>
+<p>The cloud plot is a visualization that depicts the METAR information, such as cloud ceiling, scatter, overcast etc, together with the aerodrome levels, circuit and departure.
+It will visualy demonstrate the height of cloud, and whether there is a cloud-base formation within the circuit and departure/arrival altitude.
+Animation (start/stop) of the clouds will start by clicking on the image. The direction of cloud movement depends on the wind direction.</p>
+<table class="docutils align-center" id="id2">
+<caption><span class="caption-text">Aerodrome with cloud plot.</span><a class="headerlink" href="#id2" title="Link to this table"></a></caption>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="_images/aerodrome_tab.png"><img alt="figT33" height="602" src="_images/aerodrome_tab.png" width="584" /></a></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="contact">
+<h1>CONTACT<a class="headerlink" href="#contact" title="Link to this heading"></a></h1>
+<p>The <strong>CONTACT</strong> expander shows information about the frequencies.
+These frequencies are also used in the <code class="docutils literal notranslate"><span class="pre">ATC</span> <span class="pre">Transcripts</span></code>.</p>
+<table class="docutils align-center">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="_images/contact_tab.png"><img alt="figT34" height="285" src="_images/contact_tab.png" width="583" /></a></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="fic">
+<h1>FIC<a class="headerlink" href="#fic" title="Link to this heading"></a></h1>
+<p>The <strong>FIC</strong> expander shows information about the enroute frequencies.
+These frequencies are also used in the <code class="docutils literal notranslate"><span class="pre">ATC</span> <span class="pre">Transcripts</span></code>.</p>
+<table class="docutils align-center">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="_images/FIC_tab.png"><img alt="figF1" height="298" src="_images/FIC_tab.png" width="581" /></a></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="wind-envelope">
+<h1>WIND ENVELOPE<a class="headerlink" href="#wind-envelope" title="Link to this heading"></a></h1>
+<p>Understanding the impact of crosswind and headwind is crucial for safe flight operations:</p>
+<ul class="simple">
+<li><p><strong>Headwind</strong>: A wind blowing directly against the direction of travel. Headwinds increase the relative airspeed, providing better lift during takeoff and landing but can increase fuel consumption and flight time when cruising.</p></li>
+<li><p><strong>Crosswind</strong>: A wind blowing perpendicular to the direction of travel. Crosswinds can make takeoff and landing challenging due to the lateral force exerted on the aircraft, requiring pilots to use techniques such as crabbing or side-slipping.</p></li>
+</ul>
+<p>The components of wind relative to the runway can be computed using trigonometric formulas. Given a runway aligned at angle <cite>θ_r</cite> and wind coming from angle <cite>θ_w</cite> with speed <cite>V_w</cite>:</p>
+<ol class="arabic">
+<li><p><strong>Headwind Component</strong>:</p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[V_{headwind} = V_w \cos(\theta_w - \theta_r)\]</div>
+</div></blockquote>
+</li>
+<li><p><strong>Crosswind Component</strong>:</p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[V_{crosswind} = V_w \sin(\theta_w - \theta_r)\]</div>
+</div></blockquote>
+</li>
+</ol>
+<p>These formulas help in determining the effective headwind and crosswind components based on the wind’s angle and speed relative to the runway’s orientation.</p>
+<section id="example-calculations">
+<h2>Example Calculations<a class="headerlink" href="#example-calculations" title="Link to this heading"></a></h2>
+<p>For demonstration purposes, let’s make a some computations. In the first example, the METAR reports a wind angle/strength of <strong>24025</strong>, and we will depart from runway 24.
+The headwind and crosswind components can be calculated as follows:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Runway angle, <cite>θr</cite> = 240°</p></li>
+<li><p>Wind direction, <cite>θw</cite> = 240°</p></li>
+<li><p>Wind speed, <cite>Vw</cite> = 25 knots</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[V_{headwind} = 25 \cos(240° - 240°) = 25 \cos(0°) = 25 \times 1 = 25 \text{ knots}\]</div>
+<div class="math notranslate nohighlight">
+\[V_{crosswind} = 25 \sin(240° - 240°) = 25 \sin(0°) = 25 \times 0 = 0 \text{ knots}\]</div>
+</div></blockquote>
+<p>If the wind direction changes to, for instance, 260°, the components would be:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Runway angle, <cite>θr</cite> = 240°</p></li>
+<li><p>Wind direction, <cite>θw</cite> = 260°</p></li>
+<li><p>Wind speed, <cite>Vw</cite> = 25 knots</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[V_{headwind} = 25 \cos(260° - 240°) = 25 \cos(20°) \approx 25 \times 0.94 \approx 23.5 \text{ knots}\]</div>
+<div class="math notranslate nohighlight">
+\[V_{crosswind} = 25 \sin(260° - 240°) = 25 \sin(20°) \approx 25 \times 0.34 \approx 8.5 \text{ knots}\]</div>
+</div></blockquote>
+</section>
+<section id="wind-envelope-plot">
+<h2>Wind Envelope plot<a class="headerlink" href="#wind-envelope-plot" title="Link to this heading"></a></h2>
+<p>The wind envelope is a graphical representation to illustrate how wind strength can vary during departure and arrival.
+In the previous example were shown two examples of how the headwind and crosswind component changes based on the wind angle.
+In the wind envelope, all possible scenarios from 0-360 degrees are shown including the wind gust if shown by the METAR.</p>
+<p>The wind envelope thus shows whether the crosswind and headwind remain within acceptable limits. Also in case of wind gusts.
+These limits can be based on personal preferences, aircraft specifications, or guidelines provided by an air club.
+The default limits are set to <strong>25 knots</strong> for headwind and <strong>15 knots</strong> for crosswind.</p>
+<table class="docutils align-center">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="_images/wind_env_tab.png"><img alt="figT311" height="683" src="_images/wind_env_tab.png" width="581" /></a></p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>All possible wind conditions are represented in the wind envelope:</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li><p>The blue line represents the wind limits for the given crosswind and headwind, including all intermediate points.</p></li>
+<li><p>The red cross (X) shows the actual crosswind and headwind for the given METAR.</p></li>
+<li><p>The red line depicts the wind strength across all possible angles (0-360 degrees), accounting for potential changes in wind direction.</p></li>
+<li><p>The orange line illustrates the impact of wind gusts for the given angle.</p></li>
+</ul>
+</div></blockquote>
+<p><strong>Interpretation of the wind envelope:</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li><p>If the red cross (X) is outside the blue line, the wind strength exceeds the maximum wind limits.</p></li>
+<li><p>If any part of the red line extends beyond the blue line, it indicates that certain wind angles can push the aircraft outside the maximum crosswind/headwind limits.</p></li>
+<li><p>If the orange line is outside or moves outside the blue line, it indicates that wind gusts on the METAR can push the aircraft beyond the maximum crosswind/headwind limits.</p></li>
+</ul>
+</div></blockquote>
+</section>
+</section>
+<section id="weight-and-balance">
+<h1>WEIGHT AND BALANCE<a class="headerlink" href="#weight-and-balance" title="Link to this heading"></a></h1>
+<p>In the weight and balance section you can update the weights of the persons on board together with the fuel amount.
+Weight and balance computations ensure that an aircraft is loaded within safe operational limits before flight.
+This involves calculating the total weight of the aircraft—including passengers, baggage, and fuel—and determining how that weight is distributed relative to the aircraft’s center of gravity.
+If the center of gravity is too far forward or aft, it can negatively affect stability, control, and performance.
+By verifying that both the total weight and the balance fall within the approved envelope, pilots ensure the aircraft can take off, fly, and land safely under the given conditions.</p>
+<p>All information will be processed and it is determiend whether the weight distribution affects the performance of the aircraft.</p>
+<table class="docutils align-center" id="id3">
+<caption><span class="caption-text">Weights of perons on board.</span><a class="headerlink" href="#id3" title="Link to this table"></a></caption>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="_images/WB_tab.png"><img alt="figT23a" height="733" src="_images/WB_tab.png" width="437" /></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="_images/WB1_tab.png"><img alt="figT23b" height="315" src="_images/WB1_tab.png" width="433" /></a></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="runway">
+<h1>RUNWAY<a class="headerlink" href="#runway" title="Link to this heading"></a></h1>
+<p>A correct estimation of the required runway length is a fundamental factor ensuring the safety and efficiency of aircraft operations.
+To compute the required runway length for takeoff and landing, various factors are needed, including weather conditions, aircraft performance characteristics,
+but also the guidelines provided in the Pilot’s Operating Handbook (POH).</p>
+<p>Runway length computations start thus with the aircraft’s baseline performance from the POH (Pilot Operating Handbook).
+This baseline distance depends mainly on altitude, temperature, and aircraft weight, and is estimated using a fitted model.
+From there, the required distance is adjusted step by step to reflect real-world conditions.
+Wind is applied first—headwind reduces the required distance, while tailwind increases it.
+Next, runway surface and condition (e.g. dry asphalt vs wet grass) are taken into account, followed by runway slope, where an uphill slope increases the distance and a downhill slope may reduce it.</p>
+<p>Finally, a safety margin is applied to ensure conservative and safe operations.
+This results in a final required runway distance, which is then compared against the actual available runway length (also adjusted with a safety factor).
+In summary, the main factors affecting runway length are: aircraft performance (POH), environmental conditions (altitude and temperature), wind (headwind/tailwind), runway characteristics (surface and slope), and operational safety margins.</p>
+<p><strong>Factors Affecting Runway Length:</strong></p>
+<ul class="simple">
+<li><p><strong>Weight:</strong> Heavier aircraft require more runway distance due to increased inertia and higher lift-off or landing speeds.</p></li>
+<li><p><strong>Temperature:</strong> Higher temperatures reduce air density, decreasing engine and aerodynamic performance and increasing required distance.</p></li>
+<li><p><strong>Wind:</strong> Headwinds reduce runway distance, while tailwinds significantly increase the required distance.</p></li>
+<li><p><strong>Airfield Elevation:</strong> Higher elevations reduce air density, leading to longer takeoff and landing distances.</p></li>
+<li><p><strong>Runway Surface:</strong> Soft, wet, or contaminated surfaces increase rolling resistance and required distance.</p></li>
+<li><p><strong>Runway Slope:</strong> Uphill slopes increase required distance, while downhill slopes may reduce it.</p></li>
+<li><p><strong>Runway Condition:</strong> Standing water, snow, or ice reduces braking effectiveness and increases landing distance.</p></li>
+<li><p><strong>Runway Length Available:</strong> Declared distances (TORA, TODA, LDA) limit usable runway for operations.</p></li>
+<li><p><strong>Safety Margins:</strong> Regulatory and operational safety factors increase the calculated required distance.</p></li>
+</ul>
+<table class="docutils align-center">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="_images/runway_tab.png"><img alt="figFR1" height="616" src="_images/runway_tab.png" width="431" /></a></p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Information from the POH can be saved in SkyWalk for accurate runway length computations tailored to the specific aircraft.</p>
+</div>
+<section id="required-data">
+<h2>Required Data<a class="headerlink" href="#required-data" title="Link to this heading"></a></h2>
+<p>There are multiple data sources required to determine the required runway length. The data can be incomplete, missing or incorrect. Make sure to update the information accordingly.
+Data pre-processing is readily performed to determine the surfaces and generic catagories. This information is important to accuratenly determine the runway takeoff and landing distances.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>For each aerdrome, information is loaded from a static data source and includes information such as runway angle, surface type, runway lenght, slope.</p></li>
+<li><p>METAR data is used for temperature, wind and altitude corrections.</p></li>
+</ul>
+</div></blockquote>
+<p><strong>The following runway types are available:</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Surface: Hard, Soft, Other</p></li>
+<li><p>Condition: Dry, Wet</p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="takeoff-landing-computations">
+<h2>Takeoff/ Landing Computations<a class="headerlink" href="#takeoff-landing-computations" title="Link to this heading"></a></h2>
+<p>The runway length computations are shown in the tab <code class="docutils literal notranslate"><span class="pre">RUNWAY</span></code>. Each correctionfactor that is applied is
+and easy to follow which factor has the most effect on the takeoff and/or landing distance.</p>
+<table class="docutils align-center">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="_images/runway_tab2.png"><img alt="figFR2" height="331" src="_images/runway_tab2.png" width="422" /></a></p></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<center>
+        <script async src="https://media.ethicalads.io/media/client/ethicalads.min.js"></script>
+        <!-- Show an image ad -->
+        <!-- <div data-ea-publisher="erdogantgithubio" data-ea-type="image"></div> -->
+        <div data-ea-publisher="erdogantgithubio" data-ea-type="image" data-ea-style="stickybox"></div>
+</center>
+<hr></section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="new_and_load.html" class="btn btn-neutral float-left" title="New Flight Plan" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="Enroute.html" class="btn btn-neutral float-right" title="Navigation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, Erdogan Taskesen.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
