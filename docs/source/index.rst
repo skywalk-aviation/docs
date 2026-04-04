@@ -44,21 +44,6 @@ Skywalk Aviation App
 
 
 
-.. raw:: html
-
-    <hr style="margin: 20px 0; border: none; border-top: 1px solid #ddd;">
-
-    <div style="text-align: center;">
-        <iframe
-            src="https://skywalk-aviation.github.io/app/"
-            width="60%"
-            height="800px"
-            style="border:1px solid #ccc; border-radius:10px;">
-        </iframe>
-    </div>
-
-
-
 .. toctree::
     :hidden:
     :maxdepth: 1
