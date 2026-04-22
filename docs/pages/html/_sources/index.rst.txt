@@ -74,6 +74,7 @@ Skywalk Aviation App
     :caption: Enroute
 
     Enroute
+    NAVLOG
 
 .. toctree::
     :hidden:

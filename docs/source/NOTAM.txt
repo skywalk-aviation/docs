@@ -1,0 +1,47 @@
+
+Airspace Layers
+==========================
+
+The underneath countries in the table have NOTAM information and are updated periodically.
+The use of Altitude limit filters out NOTAms and airspaces that are not in the flying altitude. If this value is set to **0**, all NOTAMs and airspaces are shown.
+Press ``Update Map`` to update the map with the new information.
+
++------------------+------------------+------------------+
+| Country          | Number of NOTAMs | Valid Date       |
++==================+==================+==================+
+| Austria          |       77         |  Auto update     |
++------------------+------------------+------------------+
+| Belgium          |      252         |  Auto update     |
++------------------+------------------+------------------+
+| Canary           |    787           |  Auto update     |
++------------------+------------------+------------------+
+| Denmark          |     162          |  Auto update     |
++------------------+------------------+------------------+
+| France           |    1812          |  Auto update     |
++------------------+------------------+------------------+
+| Germany          |      1079        |  Auto update     |
++------------------+------------------+------------------+
+| Iceland          |      37          |  Auto update     |
++------------------+------------------+------------------+
+| Ireland          |      101         |  Auto update     |
++------------------+------------------+------------------+
+| Italy            |      978         |  Auto update     |
++------------------+------------------+------------------+
+| Netherlands      |     256          |  Auto update     |
++------------------+------------------+------------------+
+| North Sea        |       787        |  Auto update     |
++------------------+------------------+------------------+
+| Norway           |        210       |  Auto update     |
++------------------+------------------+------------------+
+| Portugal         |    186           |  Auto update     |
++------------------+------------------+------------------+
+| Spain            |    1061          |  Auto update     |
++------------------+------------------+------------------+
+| Sweden           |    177           |  Auto update     |
++------------------+------------------+------------------+
+| Switzerland      |     140          |  Auto update     |
++------------------+------------------+------------------+
+| UK Channel       |      787         |  Auto update     |
++------------------+------------------+------------------+
+| United Kingdom   |       787        |  Auto update     |
++------------------+------------------+------------------+
