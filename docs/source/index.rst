@@ -1,20 +1,31 @@
-Skywalk Aviation App
-====================
+Skywalk Aviation App.
+======================
 
-.. image:: ../figs/logo_light.png
-    :height: 50px
+.. image:: ../figs/composed5.jpg
+    :height: 500px
     :align: center
 
+----------------------
+
+.. note::
+    `Read the blog here and/or listen to the podcast over here. <https://erdogant.substack.com/p/skywalk>`_
 
 .. raw:: html
-
 
     <div style="text-align:center; padding: 10px 20px;">
         <hr style="margin: 20px 0; border: none; border-top: 1px solid #ddd;">
         <p style="font-size: 20px; max-width: 600px; margin: auto;">
-            <strong>Plan smarter, fly safer.</strong><br>The all-in-one tool for pilots to manage flight data, runway lengths, weight & balance, and checklists.
+            <strong>Plan smarter, fly safer.</strong><br>
+            The all-in-one tool for pilots to manage flight data, runway lengths, weight & balance, and checklists.
         </p>
-        <div style="margin-top: 30px;">
+
+        <div style="
+            margin-top:30px;
+            display:flex;
+            flex-wrap:wrap;
+            justify-content:center;
+            gap:12px;
+        ">
             <a href="subscription.html" style="
                 background-color:#2A3F54;
                 color:white;
@@ -22,25 +33,29 @@ Skywalk Aviation App
                 border-radius:8px;
                 text-decoration:none;
                 font-size:18px;
-                margin-right:10px;">
+                min-width:180px;
+                text-align:center;
+            ">
                 Start Free Trial
             </a>
 
             <a href="https://skywalk-aviation.github.io/app/"
-               target="_blank"
-               rel="noopener noreferrer"
-               style="
+            target="_blank"
+            rel="noopener noreferrer"
+            style="
                     border:1px solid #2A3F54;
                     color:#2A3F54;
                     padding:14px 28px;
                     border-radius:8px;
                     text-decoration:none;
-                    font-size:18px;">
-                Start SkyWalk Application
+                    font-size:18px;
+                    min-width:180px;
+                    text-align:center;
+            ">
+                Launch SkyWalk Application
             </a>
         </div>
     </div>
-
 
 
 
